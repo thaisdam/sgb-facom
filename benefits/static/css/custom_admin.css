@@ -1,0 +1,206 @@
+/* cor da "SGB" */
+.brand-link .brand-text {
+    color: white !important;
+    font-weight: bold;
+}
+
+/* botão Adicionar */
+.btn-outline-success {
+    background-color: white; 
+    color: #007bff; /* Cor do texto */
+    border-color: #007bff;  /*cor da borda */
+}
+
+.btn-outline-success:hover {
+    background-color: #0056b3; /* Cor um pouco mais escura no hover */
+    border-color: #0056b3;
+    color: white;
+}
+
+/* botão Modificar (era btn-outline-info) */
+/* Esta regra se aplica a todos os .btn-outline-info que NÃO têm a classe .viewlink E NÃO SÃO o link de concessões changelink */
+.btn-outline-info:not(.viewlink):not(.changelink[href^="/concessoes/"]) {
+    background-color: white !important; 
+    color: rgb(250, 174, 31) !important; 
+    border-color: rgb(250, 174, 31) !important;
+}
+
+.btn-outline-info:not(.viewlink):not(.changelink[href^="/concessoes/"]):hover {
+    background-color: rgb(250, 174, 31) !important; 
+    border-color: rgb(250, 174, 31) !important;
+    color: white !important;
+}
+
+/* Para os botões Visualizar (que têm a classe .viewlink) - Verde */
+.viewlink {
+    background-color: white !important;
+    border-color: darkgreen !important;
+    color: darkgreen !important;  
+}
+
+.viewlink:hover {
+    background-color: darkgreen !important;   
+    border-color: darkgreen !important;
+    color: white !important; 
+}
+
+/* Remove o botão "Modificar" que tem o href que começa com "/concessoes/" */
+/* Isso atinge apenas o botão "Modificar" dos Relatórios/Concessões */
+/* Este botão é transformado em "Visualizar" pelo JS, então ele precisa ser verde */
+a.changelink[href^="/concessoes/"] {
+    background-color: white !important;
+    border-color: darkgreen !important;
+    color: darkgreen !important;  
+}
+
+a.changelink[href^="/concessoes/"]:hover {
+    background-color: darkgreen !important;   
+    border-color: darkgreen !important;
+    color: white !important; 
+}
+
+
+.dropdown-item {
+    background-color: white; 
+    color: grey;  
+    border: none; /* Remover qualquer borda padrão */
+}
+
+.dropdown-item:hover {
+    background-color: rgb(19, 19, 96); 
+    color: white;
+}
+
+.btn-outline-danger {
+    background-color: white; 
+    color: red; 
+    border-color: red; 
+}
+
+.btn-outline-danger:hover {
+    background-color: darkred; 
+    border-color: darkred;
+    color: white;
+}
+
+/* Garante que o botão Fechar seja vermelho mesmo no estado ativo/foco */
+.btn-outline-danger.active,
+.btn-outline-danger:focus {
+    background-color: darkred !important;
+    border-color: darkred !important;
+    color: white !important;
+    box-shadow: none !important; 
+}
+
+
+/* Para o ícone da lixeira */
+/* Tenta sobrescrever a cor do ícone, que geralmente é definida por 'color' */
+.fas.fa-trash {
+    /* color: #007bff !important;   */
+    background-color: gray !important;
+}
+
+/* Para o ícone fa-plus-circle */
+.fas.fa-plus-circle {
+    /* Define a cor do ícone em si */
+    /*  color: #007bff !important;*/
+    background-color: gray !important;
+}
+
+/* Para o ícone fa-edit */
+.fas.fa-edit {
+    /* Define a cor do ícone em si */
+    /* color: white !important; */
+    background-color: grey !important;
+}
+
+.btn-outline-primary {
+    background-color: navy !important; /* Exemplo: Verde (success) */
+    color: white !important; /* Texto branco */
+    border-color: navy !important; /* Borda da mesma cor */
+}
+
+.btn-outline-primary:hover {
+    background-color: navy !important; /* Verde um pouco mais escuro no hover */
+    border-color: white !important;
+    color: white !important;
+}
+
+/* barra de rolagem horizontal nos campos de permissão de usuário */
+#id_user_permissions_from, #id_user_permissions_to {
+    max-height: 300px !important; /* Mantém a rolagem vertical, se necessário */
+    overflow-y: auto !important;  /*Mantém a rolagem vertical, se necessário */
+    overflow-x: auto !important; /* Adiciona uma barra de rolagem horizontal quando o conteúdo excede a largura */
+
+}
+
+/* barra de rolagem horizontal nos campos de permissão de grupo */
+#id_permissions_from,
+#id_permissions_to {
+    max-height: 300px !important;
+    overflow-y: auto !important; /* Adiciona uma barra de rolagem horizontal quando o conteúdo excede a largura */
+    overflow-x: auto !important; /* Mantém a rolagem vertical, se necessário */  
+}
+
+
+/* mantém a cor do botão "Adicionar" e "Modificar" ao clicar*/
+.btn-outline-success:active,
+.btn-outline-success:focus {
+    background-color: #0056b3 !important;
+    border-color: #0056b3 !important;
+    color: white !important;
+    box-shadow: none !important; /* Remove o contorno do Bootstrap */
+}
+
+/* Mantém a cor do botão "Modificar" (laranja) ao clicar/focar */
+.btn-outline-info:not(.viewlink):not(.changelink[href^="/concessoes/"]):active,
+.btn-outline-info:not(.viewlink):not(.changelink[href^="/concessoes/"]):focus{
+    background-color: rgb(250, 174, 31) !important; /* Laranja quando active/focused */
+    border-color: rgb(250, 174, 31) !important;
+    color: white !important;
+    box-shadow: none !important;
+}
+
+/* Mantém a cor dos botões "Visualizar" (verde) ao clicar/focar */
+.viewlink:active,
+.viewlink:focus,
+a.changelink[href^="/concessoes/"]:active,
+a.changelink[href^="/concessoes/"]:focus {
+    background-color: darkgreen !important; /* Verde quando active/focused */
+    border-color: darkgreen !important;
+    color: white !important;
+    box-shadow: none !important;
+}
+
+
+
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
+/* Melhora o espaçamento e alinhamento do seletor de permissões */
+
+
+/* Posição dos campos de permissões */
+
+.selector {
+    display: flex;
+    gap: 5px; /* espaço entre as caixas de seleção e os botões*/
+    align-items: flex-start; /* Alinha os itens no início do contêiner flex */ 
+    
+}
+
+/*altura das caixas de permissão */
+.selector-available select,
+.selector-chosen select {
+    height: 300px !important; /* Altura fixa para as caixas de seleção */
+    overflow-y: auto;
+}
+
+.selector ul.selector-chooser {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* Garante que a lista ocupe toda a altura disponível */
+    background-color: transparent !important;  /* Remove fundo cinza se for herdado */
+  
+}

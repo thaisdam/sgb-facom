@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta de Concessões - FACOM/UFU</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="{% static 'images/logo_facom_sem_escrito.png' %}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<header class="facom-header py-2 mb-4">
+    <div class="container d-flex justify-content-start align-items-center">
+        <img src="{% static 'images/logo_facom.png' %}" alt="Logo FACOM" width=200 class="facom-logo me-3">
+        
+        <div>
+            <h4 class="m-0 text-white">Faculdade de Computação</h4>
+            <small class="text-white">Universidade Federal de Uberlândia</small>
+        </div>
+    </div>
+</header>
+
+<div class="main-content">
+    <div class="container">
+        <h2>Consulta de Concessões - FACOM/UFU</h2>
+
+        <form method="get" class="row g-3 align-items-end mb-4">
+            <div class="col-md-2">
+                <label for="data_inicio" class="form-label">De:</label>
+                <input type="date" name="data_inicio" value="{{ request.GET.data_inicio }}" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <label for="data_fim" class="form-label">Até:</label>
+                <input type="date" name="data_fim" value="{{ request.GET.data_fim }}" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <label for="beneficio" class="form-label">Benefício:</label>
+                <select name="beneficio" class="form-select">
+                    <option value="">Todos</option>
+                    {% for b in beneficios %}
+                        <option value="{{ b.id }}" {% if request.GET.beneficio == b.id|stringformat:"s" %}selected{% endif %}>{{ b.type_benefit }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="centro_custo" class="form-label">Centro de Custo:</label>
+                <select name="centro_custo" class="form-select">
+                    <option value="">Todos</option>
+                    {% for c in centros_custo %}
+                        <option value="{{ c.id }}" {% if request.GET.centro_custo == c.id|stringformat:"s" %}selected{% endif %}>{{ c.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="fonte_recurso" class="form-label">Fonte de Recurso:</label>
+                <select name="fonte_recurso" class="form-select">
+                    <option value="">Todas</option>
+                    {% for f in fontes_recurso %}
+                        <option value="{{ f.id }}" {% if request.GET.fonte_recurso == f.id|stringformat:"s" %}selected{% endif %}>{{ f.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="nome_beneficiario" class="form-label">Beneficiário:</label>
+                <input type="text" name="nome_beneficiario" value="{{ request.GET.nome_beneficiario }}" class="form-control" placeholder="Nome">
+            </div>
+            <div class="col-12 mt-3">
+                <button type="submit" class="btn btn-primary me-2">
+                    <i class="bi bi-funnel-fill"></i> Filtrar
+                </button>
+                <a href="{% url 'concession_public_list' %}" class="btn btn-secondary me-2">
+                    <i class="bi bi-arrow-counterclockwise"></i> Limpar
+                </a>
+                <a href="{% url 'concession_public_list' %}?{{ request.GET.urlencode }}&export=csv" class="btn btn-success">
+                    <i class="bi bi-download"></i> Exportar CSV
+                </a>
+            </div>
+        </form>
+
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Beneficiário</th>
+                    <th>Benefício</th>
+                    <th>Centro de Custo</th>
+                    <th>Fonte de Recurso</th>
+                    <th>Data da Concessão</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in concessions %}
+                    <tr>
+                        <td>{{ c.beneficiary.name }}</td>
+                        <td>{{ c.benefit.type_benefit }}</td>
+                        <td>{{ c.cost_center.name }}</td>
+                        <td>{{ c.source.name }}</td>
+                        <td>{{ c.date_concession|date:"d/m/Y" }}</td>
+                        <td>R$ {{ c.value|floatformat:2 }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6">Nenhum resultado encontrado com os filtros aplicados.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<footer class="facom-footer mt-4">
+    <div class="container text-center">
+        <p class="m-0 text-white">&copy; 2025 Faculdade de Computação (FACOM/UFU). Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
